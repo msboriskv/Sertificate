@@ -1,6 +1,7 @@
 # -*- coding: cp1251 -*-
 # -*- coding: utf8 -*-
 
+from asyncio.windows_events import NULL
 import json
 from venv import create
 import openpyxl
@@ -16,17 +17,19 @@ sheets = workBook.active
 
 full_name = ''
 code = ''
-
-for row in range(1, sheets.max_row):
-    fist_name = sheets[row][0].value
-    name = sheets[row][1].value
-    second_name = sheets[row][2].value
-    code = sheets[row][3].value
-    mail = sheets[row][4].value
+for collum in range(0, sheets.max_collum):
+    if sheets[0].value == NULL:
+        break
+    for row in range(1, sheets.max_row):
+        fist_name = sheets[row][0].value
+        name = sheets[row][1].value
+        second_name = sheets[row][2].value
+        code = sheets[row][3].value
+        mail = sheets[row][4].value
     
-    full_name = fist_name+' '+name+second_name
+        full_name = fist_name+' '+name+second_name
     
-    print(row, full_name)
+        print(row, full_name)
 
 pdf = FPDF('P', 'mm', 'A4')
 
