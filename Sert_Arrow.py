@@ -61,7 +61,6 @@ for row in range(1, sheets.max_row + 1):
         mail = ''
     
     full_name = fist_name + ' ' + name + ' ' + second_name
-    file_name = "full_name + '_' + code + '.pdf'"
     
     print(row, full_name, code, mail)
 
@@ -104,7 +103,6 @@ for row in range(1, sheets.max_row + 1):
         filename = os.path.basename(file)
         ftype, encoding = mimetypes.guess_type(file)
         file_type, subtype = ftype.split("/")
-        print(file_type, subtype)
     
         if file_type == "text":
             with open(f"To_Send/{file}") as f:
@@ -119,9 +117,12 @@ for row in range(1, sheets.max_row + 1):
             with open(f"To_Send/{file}", "rb") as f:
                 file = MIMEApplication(f.read(), subtype)
         else:
-            continue
+            with open(f"To_Send"/{file}, "rb") as f:
+                file = MIMEBase(file_type, subtype)
+                file.set_payload(f.read())
+                encoders.encode_base64(file)
     
-        #file.add_header('content-desposition, 'To_Send', filename = '123.pdf')
+        file.add_header('Content-Disposition', 'attachment', filename=filename)
         msg.attach(file)
 
     server = smtplib.SMTP("smtp.gmail.com", 587)
