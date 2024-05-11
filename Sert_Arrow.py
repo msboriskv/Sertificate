@@ -13,9 +13,12 @@ from openpyxl.styles import PatternFill, Border, Side, Alignment, Protection, Fo
 from fpdf import FPDF
 import smtplib
 import os
+from dotenv import load_dotenv
 
 workBook = load_workbook(filename = 'Anckett.xlsx')
 sheets = workBook.active
+
+load_dotenv()
 
 baze_point = 340
 
@@ -45,6 +48,7 @@ for row in range(1, sheets.max_row + 1):
         mail = ''
     
     full_name = fist_name + ' ' + name + ' ' + second_name
+    file_name = "full_name + '_' + code + '.pdf'"
     
     print(row, full_name, code, mail)
 
@@ -72,14 +76,14 @@ for row in range(1, sheets.max_row + 1):
     
     pdf.set_display_mode(zoom='fullpage', layout='continuous')
 
-    pdf.output(full_name + '_' + code + '.pdf')
+    pdf.output("To_Send/" + full_name + ".pdf")
 
-sender = "msboriskv@gmail.com"
-pas = "aixd svcr amnq fsvj"
+# sender = "msboriskv@gmail.com"
+# password = os.getenv('point')
 
-server = smtplib.SMTP("smtp.gmail.com", 587)
-server.starttls()
+# server = smtplib.SMTP("smtp.gmail.com", 587)
+# server.starttls()
 
-server.login(sender, pas)
+# server.login(sender, password)
 
-server.sendmail(sender, mail, "Hello fghdfgjhfsgjfhsdgjhf")
+# server.sendmail(sender, mail, "Hello fghdfgjhfsgjfhsdgjhf")
