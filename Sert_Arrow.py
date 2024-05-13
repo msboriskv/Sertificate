@@ -138,7 +138,7 @@ def create_pdf(image_to_pdf, filename, go_to_client):
             server.sendmail(sender, mail, msg.as_string())
             shutil.rmtree('To_Send')
         else:
-            pdf.output("Sertificat/" + full_name + ".pdf")
+            pdf.output("Serts/" + full_name + ".pdf")
 
 def main():
     go_to_client = int(input("Введите 1 для отпрвки почты или любой символ для сохранения файлов без отправки: "))
