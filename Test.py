@@ -30,6 +30,9 @@ import shutil
 load_dotenv()
 
 def create_pdf(change):
+
+    if change == 1:
+        pass
     
     workBook = load_workbook(filename = 'Для Таблицы/' + 'Таблица.xlsx')
     sheets = workBook.active
@@ -87,6 +90,8 @@ def create_pdf(change):
     
         read_txt = open('Text_Thanks.txt', 'r')
         txt_view = read_txt.read()
+
+
     
         pdf.y = 220
         pdf.multi_cell(0, 6, txt_view, border = 0, align='C')
