@@ -72,7 +72,7 @@ def create_pdf(change):
     
         full_name = fist_name + ' ' + name + ' ' + second_name
     
-        pdf.set_page_background('Благодарственное письмо.png')
+        pdf.set_page_background('555.png')
         pdf.add_page()
         pdf.set_display_mode(zoom='fullpage', layout='continuous')
 
@@ -83,15 +83,18 @@ def create_pdf(change):
 
         pdf.set_font("Sans", "B", 20)
         pdf.y = 185
-        pdf.multi_cell(0, 10, 'Уважаемый\n' + full_name, border = 0, align='C')
+        pdf.multi_cell(0, 10, 'Уважаемый (ая)\n' + full_name, border = 0, align='C')
+        pdf.ln()
+        
+        pdf.set_font("Sans", "B", 14)
+        pdf.y = 205
+        pdf.multi_cell(0, 10, code, border = 0, align='C')
         pdf.ln()
     
         pdf.set_font("Sans", "B", 12)
     
         read_txt = open('Text_Thanks.txt', 'r')
         txt_view = read_txt.read()
-
-
     
         pdf.y = 220
         pdf.multi_cell(0, 6, txt_view, border = 0, align='C')
@@ -102,7 +105,7 @@ def create_pdf(change):
 def main():
     change = int(input('Наберите 1 если нужен сертификат и 2 если благодарственное письмо: '))
     create_pdf(change)
-    print('Вы ввели: ' + change)
+    #print('Вы ввели: ' + change)
     
 if __name__ == "__main__":
     main()
