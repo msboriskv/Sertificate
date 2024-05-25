@@ -72,7 +72,7 @@ def create_pdf(change):
     
         full_name = fist_name + ' ' + name + ' ' + second_name
         
-        print(full_name + " .................װאיכ סמחהאם")
+        print(full_name + " ..................װאיכ סמחהאם")
     
         pdf.set_page_background('555.png')
         pdf.add_page()
