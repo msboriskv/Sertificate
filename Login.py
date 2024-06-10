@@ -78,7 +78,7 @@ class LoginWindow(QWidget):
             
         else:
             QMessageBox.warning(self, 'Ошибка', 'Неправильный логин или пароль')
-            
+           
 
 def is_valid_email(email):
     # Регулярное выражение для проверки корректности email
